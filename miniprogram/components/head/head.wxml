@@ -1,0 +1,13 @@
+<!--components/head/head.wxml-->
+<view class="head">
+  <view class="avatar">
+    <image src="{{userInfo.avatarUrl}}"></image>
+  </view>
+  <view class="tip">
+    <view wx:if="{{showName}}" class="nickName" bindanimationend="showWeather">{{userInfo.nickName}}</view>
+    <view wx:if="{{!showName}}" class="extInfo">{{extInfo.date +' '+ extInfo.week}}</view>
+  </view>
+  <view class="menu-btn" bindtap="changeIcon">
+    <mp-icon icon="more" color="{{iconColor}}"></mp-icon>
+  </view>
+</view>

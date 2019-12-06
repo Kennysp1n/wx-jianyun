@@ -1,0 +1,12 @@
+<!--miniprogram/pages/index/index.wxml-->
+
+<head class="my-head" extInfo="{{weatherInfo}}"></head>
+<gap class="my-gap"></gap>
+<view class="card-list" bindtouchend="cardListTouchEnd">
+  <card class="my-card" id="card1" index="{{-1}}"></card>
+  <card class="my-card" id="card2" index="{{0}}"></card>
+  <card class="my-card" id="card3" index="{{1}}"></card>
+</view>
+
+<!-- <button bindtap="weeklyWeatherBtn">七日天气</button>
+<button bindtap="currentWatherBtn">实时天气</button> -->

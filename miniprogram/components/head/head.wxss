@@ -1,0 +1,47 @@
+/* components/head/head.wxss */
+
+.head {
+  height: 100%;
+  width: 100%;
+  padding-bottom: 10rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.avatar {
+  width: 60rpx;
+  height: 60rpx;
+  margin-left: 60rpx;
+}
+
+.avatar image {
+  border-radius: 100%;
+}
+
+.nickName {
+  font-size: 0.8rem;
+  animation: fade-up 0.5s linear forwards;
+  animation-delay: 3s;
+}
+
+.extInfo {
+  font-size: 0.8rem;
+}
+
+@keyframes fade-up {
+  0% {
+    opacity: 1;
+    transform: rotateX(0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: rotateX(90deg);
+  }
+}
+
+.menu-btn{
+  margin-right: 60rpx;
+}
