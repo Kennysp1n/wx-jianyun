@@ -1,0 +1,18 @@
+<!--components/weather/weather.wxml-->
+<view class="weather">
+  <view class="container">
+    <view class="title">当前城市{{extInfo.city}}</view>
+    <view class="title">最后更新时间：{{extInfo.update_time}}</view>
+  </view>
+  <view class="container">
+    <view class="title">空气质量{{extInfo.air_level}}</view>
+    <view class="content">{{extInfo.air_tips}}</view>
+  </view>
+  <view class="container">
+    <view class="title">当前温度{{extInfo.tem}}摄氏度</view>
+    <view class="content">
+      <view>今天最高温度{{extInfo.tem}}摄氏度</view>
+      <view>今天最低温度{{extInfo.tem2}}摄氏度</view>
+    </view>
+  </view>
+</view>

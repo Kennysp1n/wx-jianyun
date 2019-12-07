@@ -2,6 +2,7 @@
   "usingComponents": {
     "head": "../../components/head/head",
     "gap": "../../components/gap/gap",
-    "card": "../../components/card/card"
+    "card": "../../components/card/card",
+    "weather": "../../components/weather/weather"
   }
 }

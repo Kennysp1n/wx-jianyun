@@ -8,14 +8,99 @@ Page({
    */
   data: {
     userInfo: null,
-    weatherInfo: null
+    weatherInfo: null,
+    headIconColor: 'black',
+    currentCardIndex: 0,
+    preCardIndex: -1,
+    nxtCardIndex: 1,
+    showCardList: false,
+    cardInfo: [{
+      name: 'card -1',
+      type: null
+    }, {
+      name: '温度卡片',
+      type: 'tem'
+
+    }, {
+      name: 'card 1',
+      type: 'null'
+    }, ]
   },
 
   /**
    * 不需要页面实时渲染的数据
    */
   _data: {
+    touch_x1: null,
+    touch_y1: null,
+    touch_x2: null,
+    touch_y2: null,
+    d_value: null
+  },
 
+  touchstart(e) {
+    this._data.touch_x1 = e.touches[0].clientX
+    this._data.touch_y1 = e.touches[0].clientX
+  },
+
+  touchmove(e) {
+    this._data.touch_x2 = e.touches[0].clientX
+    this._data.touch_y2 = e.touches[0].clientY
+    this._data.d_value = this._data.touch_x2 - this._data.touch_x1
+    this.animate('.card-list', [{
+      translateX: this._data.d_value
+    }], 500)
+
+  },
+
+  touchend() {
+    let temp = this.data.currentCardIndex
+    if (this._data.d_value > 100) {
+      if (temp === 0) {
+        this.setData({
+          currentCardIndex: -1,
+          nxtCardIndex: 0,
+          preCardIndex: 1
+        })
+      } else if (temp === 1) {
+        this.setData({
+          currentCardIndex: 0,
+          nxtCardIndex: 1,
+          preCardIndex: -1
+        })
+      } else {
+        this.setData({
+          currentCardIndex: 1,
+          nxtCardIndex: -1,
+          preCardIndex: 0
+        })
+      }
+    } else if (this._data.d_value < -100) {
+      if (temp === 0) {
+        this.setData({
+          currentCardIndex: 1,
+          nxtCardIndex: -1,
+          preCardIndex: 0
+        })
+      } else if (temp === 1) {
+        this.setData({
+          currentCardIndex: -1,
+          nxtCardIndex: 0,
+          preCardIndex: 1
+        })
+      } else {
+        this.setData({
+          currentCardIndex: 0,
+          nxtCardIndex: 1,
+          preCardIndex: -1
+        })
+      }
+    }
+    this.clearAnimation('.card-list')
+    this.setData({
+      showCardList: false,
+      headIconColor: 'black'
+    })
   },
 
   weeklyWeatherBtn() {
@@ -36,7 +121,7 @@ Page({
     })
   },
 
-  currentWatherBtn(){
+  currentWatherBtn() {
     wx.request({
       url: 'https://www.tianqiapi.com/api',
       data: {
@@ -54,8 +139,19 @@ Page({
     })
   },
 
-  cardListTouchEnd(e) {
-    console.log(e.target.id)
+  menu() {
+    if (this.data.headIconColor === 'black') {
+      this.setData({
+        headIconColor: 'rgba(0,0,0,0.5)'
+      })
+    } else {
+      this.setData({
+        headIconColor: 'black'
+      })
+    }
+    this.setData({
+      showCardList: !this.data.showCardList
+    })
   },
 
   /**
@@ -96,10 +192,10 @@ Page({
                 appsecret: 'aV9KC2lG'
               },
               success(res) {
-                console.log(res.data)
                 _this.setData({
                   weatherInfo: res.data
                 })
+                console.log(_this.data.weatherInfo)
               },
               fail(res) {
                 console.log(res)

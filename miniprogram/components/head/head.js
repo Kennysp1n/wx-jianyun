@@ -40,7 +40,10 @@ Component({
    */
   properties: {
     extInfo: {
-      type: Object
+      type: String
+    },
+    iconColor: {
+      type: String
     }
   },
 
@@ -49,7 +52,6 @@ Component({
    */
   data: {
     userInfo: null,
-    iconColor: 'black',
     showName: true
   },
 
@@ -58,17 +60,9 @@ Component({
    */
   methods: {
     changeIcon() {
-      if (this.data.iconColor === 'black') {
-        this.setData({
-          iconColor: 'rgba(0,0,0,0.5)'
-        })
-      } else {
-        this.setData({
-          iconColor: 'black'
-        })
-      }
+      this.triggerEvent('menu')
     },
-    showWeather() {
+    showExtInfo() {
       this.setData({
         showName: false
       })

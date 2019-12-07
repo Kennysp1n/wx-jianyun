@@ -15,7 +15,7 @@ page {
 .my-gap {
   width: 100%;
   height: 10rpx;
-  margin-bottom: 10rpx;
+  margin-bottom: 40rpx;
 }
 
 .card-list {
@@ -30,4 +30,28 @@ page {
 .my-card {
   width: 600rpx;
   height: 80%;
+}
+
+.card-detail {
+  width: 100%;
+  height: 100%;
+}
+
+.my-weather {
+  width: 100%;
+  height: 100%;
+}
+
+.currentCard {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.my-current-card {
+  width: 90%;
+  height: 90%;
 }

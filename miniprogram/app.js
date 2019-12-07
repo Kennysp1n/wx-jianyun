@@ -32,7 +32,6 @@ App({
 
     //查看是否有相应缓存数据
     let temp = wx.getStorageSync('userInfo')
-    console.log(temp)
     if (temp) {
       this.globalData.userInfo = temp
     }

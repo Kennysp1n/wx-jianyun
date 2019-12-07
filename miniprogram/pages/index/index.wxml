@@ -1,11 +1,25 @@
 <!--miniprogram/pages/index/index.wxml-->
 
-<head class="my-head" extInfo="{{weatherInfo}}"></head>
+<head class="my-head" extInfo="{{cardInfo[currentCardIndex + 1].name}}" iconColor="{{headIconColor}}" bindmenu="menu"></head>
 <gap class="my-gap"></gap>
-<view class="card-list" bindtouchend="cardListTouchEnd">
-  <card class="my-card" id="card1" index="{{-1}}"></card>
-  <card class="my-card" id="card2" index="{{0}}"></card>
-  <card class="my-card" id="card3" index="{{1}}"></card>
+<view class="card-list" bindtouchend="cardListTouchEnd" bindtouchstart="touchstart" bindtouchmove="touchmove" bindtouchend="touchend" wx:if="{{showCardList}}">
+  <card class="my-card">
+    <view>{{cardInfo[preCardIndex + 1].name}}</view>
+  </card>
+  <card class="my-card">
+    <view>{{cardInfo[currentCardIndex + 1].name}}</view>
+  </card>
+  <card class="my-card">
+    <view>{{cardInfo[nxtCardIndex + 1].name}}</view>
+  </card>
+</view>
+<view class="currentCard" wx:if="{{!showCardList}}">
+  <card class="my-current-card">
+    <text wx:if="{{!cardInfo[currentCardIndex + 1].type}}">{{cardInfo[currentCardIndex + 1].name}}</text>
+    <view class="card-detail" wx:if="{{cardInfo[currentCardIndex + 1].type}}">
+      <weather extInfo="{{weatherInfo}}" class="my-weather" wx:if="{{cardInfo[currentCardIndex + 1].type === 'tem'}}" />
+    </view>
+  </card>
 </view>
 
 <!-- <button bindtap="weeklyWeatherBtn">七日天气</button>

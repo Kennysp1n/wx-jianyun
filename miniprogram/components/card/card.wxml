@@ -1,2 +1,2 @@
 <!--components/card/card.wxml-->
-<view class="card" bindtouchstart="touchstart" bindtouchmove="touchmove" bindtouchend="touchend"></view>
+<view class="card"><slot/></view>
