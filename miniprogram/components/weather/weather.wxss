@@ -5,12 +5,12 @@
   height: 100%;
   border-radius: 20rpx;
   display: flex;
-  background-color: #cce5ff;
+  background-color: #3b6da7cb;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
   overflow: scroll;
-  color: #4da4ff;
+  color: white;
   font-weight: bold;
 }
 

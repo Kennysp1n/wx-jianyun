@@ -15,14 +15,17 @@ Page({
     nxtCardIndex: 1,
     showCardList: false,
     cardInfo: [{
-      name: 'card -1',
-      type: null
+      name: '便签卡片',
+      hasDetail: false,
+      type: 'diary'
     }, {
-      name: '温度卡片',
+      name: '天气卡片',
+      hasDetail: true,
       type: 'tem'
 
     }, {
-      name: 'card 1',
+      name: '工具卡片',
+      hasDetail: false,
       type: 'null'
     }, ]
   },
@@ -154,6 +157,13 @@ Page({
     })
   },
 
+  goTo() {
+    const _this = this
+    let index = this.data.currentCardIndex
+    wx.navigateTo({
+      url: `../test/test?card=${index}`
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
