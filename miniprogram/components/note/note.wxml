@@ -1,0 +1,22 @@
+<!--components/note/note.wxml-->
+<view class="back-icon" wx:if="{{showAddForm}}">
+  <my-icon icon="back" size="10" bindtap="toggleShowAddForm" />
+</view>
+<view class="note">
+  <view class="note-detail" wx:if="{{!showAddForm}}">
+    <view wx:for="{{db_note_data}}" wx:key="{{item._id}}" class="note-container" bindtap="showDetailPage" data-index="{{index}}">
+      <view class="note-title">{{item.title}}</view>
+      <view class="note-content">{{item.content}}</view>
+    </view>
+  </view>
+  <button bindtap="toggleShowAddForm" class="btn">添加便签</button>
+  <form bindsubmit="submit" class="form" wx:if="{{showAddForm}}">
+    <view class="input-container">
+      <input maxlength="{{20}}" class="input" name="title" placeholder="标题..."></input>
+    </view>
+    <view class="textarea-container">
+      <textarea class="textarea" name="content" maxlength="{{-1}}" placeholder="内容..."></textarea>
+    </view>
+    <button form-type="submit" class="btn">提交</button>
+  </form>
+</view>

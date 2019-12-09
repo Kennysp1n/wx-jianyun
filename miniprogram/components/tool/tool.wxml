@@ -1,0 +1,27 @@
+<!--components/tool/tool.wxml-->
+<view class="tool">
+  <view class="grid-item item1">
+    <view class="des">清除缓存</view>
+    <view class="btn" bindtap="clearStorage"></view>
+  </view>
+  <view class="grid-item item2">
+    <view class="des">待定</view>
+    <view class="btn"></view>
+  </view>
+  <view class="grid-item item3">
+    <view class="des">待定</view>
+    <view class="btn"></view>
+  </view>
+  <view class="grid-item item4">
+    <view class="des">待定</view>
+    <view class="btn"></view>
+  </view>
+  <view class="grid-item item5">
+    <view class="des">待定</view>
+    <view class="btn"></view>
+  </view>
+  <view class="grid-item item6">
+    <view class="des">待定</view>
+    <view class="btn"></view>
+  </view>
+</view>

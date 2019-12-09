@@ -1,4 +1,0 @@
-<!--miniprogram/pages/test/test.wxml-->
-<canvas canvas-id="test-canvas" class="test-canvas">
-  <view class="test-view"></view>
-</canvas>

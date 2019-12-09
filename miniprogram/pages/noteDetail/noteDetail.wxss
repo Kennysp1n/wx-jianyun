@@ -1,0 +1,25 @@
+/* miniprogram/pages/noteDetail/noteDetail.wxss */
+
+.container {
+  padding: 20rpx;
+  width: 90%;
+  margin: auto;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20rpx;
+}
+
+.date {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20rpx;
+  font-size: 0.6rem;
+}
+
+.content {
+  font-size: 0.8rem;
+}

@@ -1,33 +1,14 @@
 <!--miniprogram/pages/index/index.wxml-->
+
 <head class="my-head" extInfo="{{cardInfo[currentCardIndex + 1].name}}" iconColor="{{headIconColor}}" bindmenu="menu"></head>
-<gap class="my-gap"></gap>
-<view class="card-list" bindtouchend="cardListTouchEnd" bindtouchstart="touchstart" bindtouchmove="touchmove" bindtouchend="touchend" wx:if="{{showCardList}}">
-  <card class="my-card">
-    <text wx:if="{{!cardInfo[preCardIndex + 1].hasDetail}}">{{cardInfo[preCardIndex + 1].name}}</text>
-    <view class="card-detail" wx:if="{{cardInfo[preCardIndex + 1].hasDetail}}">
-      <weather extInfo="{{weatherInfo}}" class="my-weather" wx:if="{{cardInfo[preCardIndex + 1].type === 'tem'}}" />
-    </view>
-  </card>
-  <card class="my-card">
-    <text wx:if="{{!cardInfo[currentCardIndex + 1].hasDetail}}">{{cardInfo[currentCardIndex + 1].name}}</text>
-    <view class="card-detail" wx:if="{{cardInfo[currentCardIndex + 1].hasDetail}}">
-      <weather extInfo="{{weatherInfo}}" class="my-weather" wx:if="{{cardInfo[currentCardIndex + 1].type === 'tem'}}" />
-    </view>
-  </card>
-  <card class="my-card">
-    <text wx:if="{{!cardInfo[nxtCardIndex + 1].hasDetail}}">{{cardInfo[nxtCardIndex + 1].name}}</text>
-    <view class="card-detail" wx:if="{{cardInfo[nxtCardIndex + 1].hasDetail}}">
-      <weather extInfo="{{weatherInfo}}" class="my-weather" wx:if="{{cardInfo[nxtCardIndex + 1].type === 'tem'}}" />
-    </view>
-  </card>
+<gap class="my-gap" />
+<view class="card-list" bindtouchstart="touchstart" bindtouchmove="touchmove" bindtouchend="touchend" wx:if="{{showCardList}}">
+  <card class="my-card" cardInfo="{{cardInfo}}" cardIndex="{{preCardIndex}}" weatherInfo="{{weatherInfo}}" db_note_data="{{db_note_data}}" />
+  <card class="my-card" cardInfo="{{cardInfo}}" cardIndex="{{currentCardIndex}}" weatherInfo="{{weatherInfo}}" db_note_data="{{db_note_data}}" />
+  <card class="my-card" cardInfo="{{cardInfo}}" cardIndex="{{nxtCardIndex}}" weatherInfo="{{weatherInfo}}" db_note_data="{{db_note_data}}" />
 </view>
 <view class="currentCard" wx:if="{{!showCardList}}">
-  <card class="my-current-card">
-    <text wx:if="{{!cardInfo[currentCardIndex + 1].hasDetail}}">{{cardInfo[currentCardIndex + 1].name}}</text>
-    <view class="card-detail" wx:if="{{cardInfo[currentCardIndex + 1].hasDetail}}">
-      <weather extInfo="{{weatherInfo}}" class="my-weather" wx:if="{{cardInfo[currentCardIndex + 1].type === 'tem'}}" />
-    </view>
-  </card>
+  <card class="my-current-card" cardInfo="{{cardInfo}}" cardIndex="{{currentCardIndex}}" weatherInfo="{{weatherInfo}}" db_note_data="{{db_note_data}}" />
 </view>
 <!-- <button bindtap="goTo">去test页面</button> -->
 <!-- <button bindtap="weeklyWeatherBtn">七日天气</button>

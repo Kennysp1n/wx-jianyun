@@ -20,16 +20,6 @@ App({
       userInfo: null
     }
 
-    const _this = this
-
-    //调用云函数login,获取openid
-    wx.cloud.callFunction({
-      name: 'login',
-      success(res) {
-        _this.globalData.openid = res.result.openid
-      }
-    })
-
     //查看是否有相应缓存数据
     let temp = wx.getStorageSync('userInfo')
     if (temp) {

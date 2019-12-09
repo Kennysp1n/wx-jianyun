@@ -1,4 +1,8 @@
 {
   "component": true,
-  "usingComponents": {}
+  "usingComponents": {
+    "weather": "../../components/weather/weather",
+    "note": "../../components/note/note",
+    "tool": "../../components/tool/tool"
+  }
 }

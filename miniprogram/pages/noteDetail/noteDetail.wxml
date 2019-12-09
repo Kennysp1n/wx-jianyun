@@ -1,0 +1,6 @@
+<!--miniprogram/pages/noteDetail/noteDetail.wxml-->
+<view class="container">
+  <view class="title">{{note_list[index].title}}</view>
+  <view class="date">{{note_list[index].date}}</view>
+  <view class="content">{{note_list[index].content}}</view>
+</view>

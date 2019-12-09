@@ -1,4 +1,5 @@
 // miniprogram/pages/index/index.js
+const db_note = wx.cloud.database().collection('note')
 const app = getApp()
 
 Page({
@@ -9,6 +10,8 @@ Page({
   data: {
     userInfo: null,
     weatherInfo: null,
+    openid: null,
+    db_note_data: null,
     headIconColor: 'black',
     currentCardIndex: 0,
     preCardIndex: -1,
@@ -16,8 +19,8 @@ Page({
     showCardList: false,
     cardInfo: [{
       name: '便签卡片',
-      hasDetail: false,
-      type: 'diary'
+      hasDetail: true,
+      type: 'note'
     }, {
       name: '天气卡片',
       hasDetail: true,
@@ -25,8 +28,8 @@ Page({
 
     }, {
       name: '工具卡片',
-      hasDetail: false,
-      type: 'null'
+      hasDetail: true,
+      type: 'tool'
     }, ]
   },
 
@@ -38,27 +41,29 @@ Page({
     touch_y1: null,
     touch_x2: null,
     touch_y2: null,
-    d_value: null
+    d_value_x: null,
+    d_value_y: null
   },
 
   touchstart(e) {
     this._data.touch_x1 = e.touches[0].clientX
-    this._data.touch_y1 = e.touches[0].clientX
+    this._data.touch_x2 = e.touches[0].clientX
+    this._data.touch_y1 = e.touches[0].clientY
   },
 
   touchmove(e) {
     this._data.touch_x2 = e.touches[0].clientX
     this._data.touch_y2 = e.touches[0].clientY
-    this._data.d_value = this._data.touch_x2 - this._data.touch_x1
+    this._data.d_value_x = this._data.touch_x2 - this._data.touch_x1
     this.animate('.card-list', [{
-      translateX: this._data.d_value
+      translateX: this._data.d_value_x
     }], 500)
 
   },
 
   touchend() {
     let temp = this.data.currentCardIndex
-    if (this._data.d_value > 100) {
+    if (this._data.d_value_x > 100) {
       if (temp === 0) {
         this.setData({
           currentCardIndex: -1,
@@ -78,7 +83,7 @@ Page({
           preCardIndex: 0
         })
       }
-    } else if (this._data.d_value < -100) {
+    } else if (this._data.d_value_x < -100) {
       if (temp === 0) {
         this.setData({
           currentCardIndex: 1,
@@ -104,6 +109,7 @@ Page({
       showCardList: false,
       headIconColor: 'black'
     })
+    this._data.d_value_x = null
   },
 
   weeklyWeatherBtn() {
@@ -205,7 +211,6 @@ Page({
                 _this.setData({
                   weatherInfo: res.data
                 })
-                console.log(_this.data.weatherInfo)
               },
               fail(res) {
                 console.log(res)
@@ -214,6 +219,20 @@ Page({
           }
         })
       }
+    })
+
+    //调用云函数login,获取openid
+    wx.cloud.callFunction({
+      name: 'login',
+      success(res) {
+        _this.data.openid = res.result.openid
+      }
+    })
+
+    db_note.get().then((res) => {
+      _this.setData({
+        db_note_data: res.data
+      })
     })
   },
 
@@ -249,7 +268,26 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function() {
-
+    //请求天气
+    wx.request({
+      url: 'https://www.tianqiapi.com/api',
+      data: {
+        version: 'v6',
+        city: res.userInfo.city,
+        appid: '72545297',
+        appsecret: 'aV9KC2lG'
+      },
+      success(res) {
+        _this.setData({
+          weatherInfo: res.data
+        })
+        console.log(_this.data.weatherInfo)
+      },
+      fail(res) {
+        console.log(res)
+      }
+    })
+    console.log('下拉刷新成功')
   },
 
   /**

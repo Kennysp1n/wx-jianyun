@@ -1,6 +1,15 @@
 // components/weather/weather.js
 Component({
   /**
+   * 生命周期
+   */
+  lifetimes: {
+    attached() {
+    }
+  },
+
+
+  /**
    * 组件的属性列表
    */
   properties: {
