@@ -4,6 +4,6 @@
   <view class="card-detail" wx:if="{{cardInfo[cardIndex + 1].hasDetail}}">
     <weather extInfo="{{weatherInfo}}" class="my-weather" wx:if="{{cardInfo[cardIndex + 1].type === 'tem'}}" />
     <tool class="my-tool" wx:if="{{cardInfo[cardIndex + 1].type === 'tool'}}" />
-    <note class="my-note" wx:if="{{cardInfo[cardIndex + 1].type === 'note'}}" db_note_data="{{db_note_data}}"  />
+    <note class="my-note" wx:if="{{cardInfo[cardIndex + 1].type === 'note'}}" db_note_data="{{db_note_data}}" showCardList="{{showCardList}}" />
   </view>
 </view>

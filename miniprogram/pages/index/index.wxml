@@ -3,9 +3,9 @@
 <head class="my-head" extInfo="{{cardInfo[currentCardIndex + 1].name}}" iconColor="{{headIconColor}}" bindmenu="menu"></head>
 <gap class="my-gap" />
 <view class="card-list" bindtouchstart="touchstart" bindtouchmove="touchmove" bindtouchend="touchend" wx:if="{{showCardList}}">
-  <card class="my-card" cardInfo="{{cardInfo}}" cardIndex="{{preCardIndex}}" weatherInfo="{{weatherInfo}}" db_note_data="{{db_note_data}}" />
-  <card class="my-card" cardInfo="{{cardInfo}}" cardIndex="{{currentCardIndex}}" weatherInfo="{{weatherInfo}}" db_note_data="{{db_note_data}}" />
-  <card class="my-card" cardInfo="{{cardInfo}}" cardIndex="{{nxtCardIndex}}" weatherInfo="{{weatherInfo}}" db_note_data="{{db_note_data}}" />
+  <card class="my-card" cardInfo="{{cardInfo}}" cardIndex="{{preCardIndex}}" weatherInfo="{{weatherInfo}}" db_note_data="{{db_note_data}}" showCardList="{{showCardList}}" />
+  <card class="my-card" cardInfo="{{cardInfo}}" cardIndex="{{currentCardIndex}}" weatherInfo="{{weatherInfo}}" db_note_data="{{db_note_data}}" showCardList="{{showCardList}}" />
+  <card class="my-card" cardInfo="{{cardInfo}}" cardIndex="{{nxtCardIndex}}" weatherInfo="{{weatherInfo}}" db_note_data="{{db_note_data}}" showCardList="{{showCardList}}" />
 </view>
 <view class="currentCard" wx:if="{{!showCardList}}">
   <card class="my-current-card" cardInfo="{{cardInfo}}" cardIndex="{{currentCardIndex}}" weatherInfo="{{weatherInfo}}" db_note_data="{{db_note_data}}" />

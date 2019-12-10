@@ -193,10 +193,7 @@ Page({
             //设置缓存
             wx.setStorage({
               key: 'userInfo',
-              data: res.userInfo,
-              success() {
-                console.log('userInfo缓存更新成功')
-              }
+              data: res.userInfo
             })
             //请求天气
             wx.request({

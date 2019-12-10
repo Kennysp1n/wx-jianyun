@@ -3,13 +3,20 @@
   <my-icon icon="back" size="10" bindtap="toggleShowAddForm" />
 </view>
 <view class="note">
-  <view class="note-detail" wx:if="{{!showAddForm}}">
-    <view wx:for="{{db_note_data}}" wx:key="{{item._id}}" class="note-container" bindtap="showDetailPage" data-index="{{index}}">
-      <view class="note-title">{{item.title}}</view>
+  <view class="note-detail" wx:if="{{!showAddForm && db_note_data.length > 0}}">
+    <view wx:for="{{db_note_data}}" wx:key="{{item._id}}" class="note-container" bindtap="handleTap" data-index="{{index}}" bindlongpress="handleLongPress" id="item{{index}}" >
+      <view class="note-head">
+        <view wx:if="{{showDelBtn}}" class="select-circle" id="item{{index}}-circle"></view>
+        <view class="note-title">{{item.title}}</view>
+      </view>
       <view class="note-content">{{item.content}}</view>
     </view>
   </view>
-  <button bindtap="toggleShowAddForm" class="btn">添加便签</button>
+  <button bindtap="toggleShowAddForm" class="btn" wx:if="{{!showAddForm && !showCardList && !showDelBtn}}">添加便签</button>
+  <view class="cancel-btn-container" wx:if="{{showDelBtn}}">
+    <button bindtap="cancelDelete" class="cancel-btn" size="mini">取消</button>
+    <button bindtap="confirmDelete" class="delete-btn" size="mini">删除</button>
+  </view>
   <form bindsubmit="submit" class="form" wx:if="{{showAddForm}}">
     <view class="input-container">
       <input maxlength="{{20}}" class="input" name="title" placeholder="标题..."></input>

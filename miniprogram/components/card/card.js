@@ -23,6 +23,9 @@ Component({
     },
     cardIndex: {
       type: Number
+    },
+    showCardList: {
+      type: Boolean
     }
   },
 
